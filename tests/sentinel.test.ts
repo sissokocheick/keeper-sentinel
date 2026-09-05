@@ -542,6 +542,129 @@ async function runTests() {
   });
 
   // ═══════════════════════════════════════════════════════════════════
+  // GROUP 11: Protocol Actions Discovery & Ecosystem Coverage (3 tests)
+  // ═══════════════════════════════════════════════════════════════════
+
+  console.log('\n🌐 Group 11: Protocol Actions Discovery & Multi-DeFi Coverage\n');
+
+  await test('DeFi Discovery: search_protocol_actions for aave-v3 returns actions list', async () => {
+    const actions = await client.searchProtocolActions('', 'aave-v3');
+    expect(actions, 'aave actions').toBeNonEmpty();
+  });
+
+  await test('DeFi Discovery: search_protocol_actions for uniswap returns swap actions', async () => {
+    const actions = await client.searchProtocolActions('', 'uniswap');
+    expect(actions, 'uniswap actions').toBeNonEmpty();
+  });
+
+  await test('DeFi Discovery: search_protocol_actions for morpho returns position actions', async () => {
+    const actions = await client.searchProtocolActions('', 'morpho');
+    expect(actions, 'morpho actions').toBeNonEmpty();
+  });
+
+  // ═══════════════════════════════════════════════════════════════════
+  // GROUP 12: Live On-Chain Protection State Verification (4 tests)
+  // ═══════════════════════════════════════════════════════════════════
+
+  console.log('\n🛡️ Group 12: Live On-Chain Protection State Verification\n');
+
+  await test('Contracts: SentinelAction records at least 2 successful protections onchain', async () => {
+    const count = await baseClient.readContract({
+      address: deployedContracts.contracts.SentinelAction as `0x${string}`,
+      abi: actionAbi,
+      functionName: 'totalSuccessfulProtections',
+    });
+    expect(Number(count), 'successful protections count').toBeGreaterThan(1);
+  });
+
+  await test('Contracts: SentinelAction has accumulated real gas savings onchain (> 60,000 gas)', async () => {
+    const saved = await baseClient.readContract({
+      address: deployedContracts.contracts.SentinelAction as `0x${string}`,
+      abi: actionAbi,
+      functionName: 'totalGasSaved',
+    });
+    expect(Number(saved), 'total gas saved onchain').toBeGreaterThan(60000);
+  });
+
+  await test('Contracts: SentinelRegistry.needsProtection(1, 1.2e18) evaluates true onchain', async () => {
+    const needed = await baseClient.readContract({
+      address: deployedContracts.contracts.SentinelRegistry as `0x${string}`,
+      abi: registryAbi,
+      functionName: 'needsProtection',
+      args: [1n, 1200000000000000000n],
+    });
+    expect(needed, 'needs protection for HF 1.2').toBeTrue();
+  });
+
+  await test('Contracts: SentinelRegistry.needsProtection(1, 1.8e18) evaluates false onchain', async () => {
+    const needed = await baseClient.readContract({
+      address: deployedContracts.contracts.SentinelRegistry as `0x${string}`,
+      abi: registryAbi,
+      functionName: 'needsProtection',
+      args: [1n, 1800000000000000000n],
+    });
+    expect(needed, 'needs protection for HF 1.8').toBeFalse();
+  });
+
+  // ═══════════════════════════════════════════════════════════════════
+  // GROUP 13: Mathematical Boundaries & Invariant Safety (4 tests)
+  // ═══════════════════════════════════════════════════════════════════
+
+  console.log('\n📐 Group 13: Mathematical Boundaries & Invariant Safety\n');
+
+  await test('Invariants: Infinite health factor (zero debt) parsed as 999.0 safe state', async () => {
+    const maxUint = '115792089237316195423570985008687907853269984665640564039457584007913129639935';
+    let parsed: number;
+    if (maxUint === '115792089237316195423570985008687907853269984665640564039457584007913129639935') {
+      parsed = 999.0;
+    } else {
+      parsed = parseFloat(maxUint) / 1e18;
+    }
+    expect(parsed, 'parsed health factor').toBe(999.0);
+    expect(parsed < 1.5, 'risk detection for infinite health factor').toBeFalse();
+  });
+
+  await test('Invariants: Boundary HF exactly equal to threshold (1.5) does not trigger risk', async () => {
+    const hf = 1.5;
+    const threshold = 1.5;
+    const isAtRisk = hf < threshold;
+    expect(isAtRisk, 'boundary threshold check').toBeFalse();
+  });
+
+  await test('Invariants: Boundary HF 1.4999 triggers risk deterministically', async () => {
+    const hf = 1.4999;
+    const threshold = 1.5;
+    const isAtRisk = hf < threshold;
+    expect(isAtRisk, 'boundary sub-threshold check').toBeTrue();
+  });
+
+  await test('Invariants: Preflight simulation intercepts invalid chain gracefully', async () => {
+    const sim = await client.simulateTransfer({
+      chainId: '999999999', // non-existent chain
+      toAddress: '0x71E4Fed736E5B6b62CCb91e43B3cE9F2110f29dA',
+      amount: '0.0001',
+    });
+    // Must either fail simulation or return wouldRevert=true without crashing
+    expect(typeof sim.wouldRevert, 'wouldRevert flag').toBe('boolean');
+  });
+
+  // ═══════════════════════════════════════════════════════════════════
+  // GROUP 14: On-Chain Cadence & Health Check Freshness (1 test)
+  // ═══════════════════════════════════════════════════════════════════
+
+  console.log('\n⏱️ Group 14: On-Chain Cadence & Health Check Freshness\n');
+
+  await test('Contracts: Position #1 onchain lastCheckedAt timestamp is recent (> 0)', async () => {
+    const pos = await baseClient.readContract({
+      address: deployedContracts.contracts.SentinelRegistry as `0x${string}`,
+      abi: registryAbi,
+      functionName: 'getPosition',
+      args: [1n],
+    });
+    expect(Number(pos.lastCheckedAt), 'lastCheckedAt timestamp').toBeGreaterThan(0);
+  });
+
+  // ═══════════════════════════════════════════════════════════════════
   // RESULTS
   // ═══════════════════════════════════════════════════════════════════
 

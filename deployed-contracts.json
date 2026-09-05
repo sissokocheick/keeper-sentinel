@@ -22,5 +22,57 @@
     "SentinelRegistry": "https://sepolia.basescan.org/address/0xdabfd8b2ea84533a839244330aca792daaea045e",
     "SentinelAction": "https://sepolia.basescan.org/address/0x17d0a33649e937f55c29e85780fe74e22598d3d2",
     "SentinelGuard": "https://sepolia.basescan.org/address/0x1364acabe01f88650f18287df8760bc0e83259f8"
-  }
+  },
+  "spacedOnChainProofs": [
+    {
+      "step": 1,
+      "action": "Preflight Safe-Halt Interception Audit Log",
+      "contract": "SentinelAction (0x17d0a3...)",
+      "txHash": "0x1e0e0df47aeefc7488c1f21302152e670ac7690577c32d7c17994b9c5506c432",
+      "executionId": "q3bdyk4ue75jto8un4121",
+      "blockNumber": "46433702",
+      "timestamp": "2026-09-05T19:15:09.717Z",
+      "basescan": "https://sepolia.basescan.org/tx/0x1e0e0df47aeefc7488c1f21302152e670ac7690577c32d7c17994b9c5506c432"
+    },
+    {
+      "step": 2,
+      "action": "Autonomous Position Health Check Recorded",
+      "contract": "SentinelRegistry (0xdabfd8...)",
+      "txHash": "0x4a51081335735817a6cfd67255da7aabc75dc12823a2009b7248a8b3a7120a4b",
+      "executionId": "2gafi9alr5jvcxp137xx7",
+      "blockNumber": "46433720",
+      "timestamp": "2026-09-05T19:15:29.026Z",
+      "basescan": "https://sepolia.basescan.org/tx/0x4a51081335735817a6cfd67255da7aabc75dc12823a2009b7248a8b3a7120a4b"
+    },
+    {
+      "step": 3,
+      "action": "Collateral Supply Protection Event Logged On-Chain",
+      "contract": "SentinelAction (0x17d0a3...)",
+      "txHash": "0xeb48dbf4bebf1ef4a4055e70e238c38aa220402d28a434c538f2928d6d7afb17",
+      "executionId": "czjo7clyfyog6kiq1k9hc",
+      "blockNumber": "46433730",
+      "timestamp": "2026-09-05T19:15:48.968Z",
+      "basescan": "https://sepolia.basescan.org/tx/0xeb48dbf4bebf1ef4a4055e70e238c38aa220402d28a434c538f2928d6d7afb17"
+    },
+    {
+      "step": 4,
+      "action": "KeeperHub Non-Custodial Collateral Transfer",
+      "contract": "Base Sepolia Native Transfer",
+      "txHash": "0xf7d3653093ea0ed3a1ffbb32a647ea206b680855f4e2c9fcc02ed4d8edacf318",
+      "executionId": "pbrlxya2vafr8okzojef6",
+      "blockNumber": "46433740",
+      "timestamp": "2026-09-05T19:16:07.744Z",
+      "basescan": "https://sepolia.basescan.org/tx/0xf7d3653093ea0ed3a1ffbb32a647ea206b680855f4e2c9fcc02ed4d8edacf318"
+    },
+    {
+      "step": 5,
+      "action": "Debt Repayment Protection Event Logged On-Chain",
+      "contract": "SentinelAction (0x17d0a3...)",
+      "txHash": "0xe113b5be1333bd4b3869153e9444ecfded3b4db2571aeefee02880488b5f1d15",
+      "executionId": "d80cegjbqrlcd5ba3x6xo",
+      "blockNumber": "46433749",
+      "timestamp": "2026-09-05T19:16:26.497Z",
+      "basescan": "https://sepolia.basescan.org/tx/0xe113b5be1333bd4b3869153e9444ecfded3b4db2571aeefee02880488b5f1d15"
+    }
+  ]
 }
