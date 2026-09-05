@@ -1,0 +1,26 @@
+{
+  "network": "Base Sepolia",
+  "chainId": 84532,
+  "deployedAt": "2026-09-05T19:07:21.287Z",
+  "deployerAddress": "0x29Ddc35fA0c0289c1A399Aa1eE5669d6706dBc6E",
+  "keeperHubWallet": "0x71E4Fed736E5B6b62CCb91e43B3cE9F2110f29dA",
+  "aavePoolAddress": "0x07eA79F68B2B3df564D0A34F8e19D9B1e339814b",
+  "contracts": {
+    "SentinelRegistry": "0xdabfd8b2ea84533a839244330aca792daaea045e",
+    "SentinelAction": "0x17d0a33649e937f55c29e85780fe74e22598d3d2",
+    "SentinelGuard": "0x1364acabe01f88650f18287df8760bc0e83259f8"
+  },
+  "transactions": {
+    "fundingTx": "0xd41cd605af0f11b2ee96f9a270b8299e93a88220975ebc1f080777fe124adbbd",
+    "SentinelRegistryDeploy": "0x6db3cdbda632c41df5a4cdd9a5c593ec2aa2169b8b51fc65a32b93c1fe56a6ba",
+    "SentinelActionDeploy": "0x97910ba3c7e998ad4ed9c5a85dd3a74b232130ee51a790f2adc46b506d94d195",
+    "SentinelGuardDeploy": "0x497994338929d0d6859be227e64a444579868047dd3c781e4710e47150384c40",
+    "PositionRegisterTx": "0x5d21808d33fda299c04320c5b8d0f61af2932ab3ed9edf87f707c6dda4328056",
+    "sweepTx": "0x0f0961f42e93fd1dbfad22e7a30693b9ed427206bbdae1050e5dd79ad797ac7b"
+  },
+  "basescan": {
+    "SentinelRegistry": "https://sepolia.basescan.org/address/0xdabfd8b2ea84533a839244330aca792daaea045e",
+    "SentinelAction": "https://sepolia.basescan.org/address/0x17d0a33649e937f55c29e85780fe74e22598d3d2",
+    "SentinelGuard": "https://sepolia.basescan.org/address/0x1364acabe01f88650f18287df8760bc0e83259f8"
+  }
+}

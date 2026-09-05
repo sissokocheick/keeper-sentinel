@@ -1,0 +1,40 @@
+{
+  "name": "keeper-sentinel",
+  "version": "1.0.0",
+  "description": "KeeperSentinel — Autonomous DeFi Risk & Deterministic Execution Engine for KeeperHub",
+  "main": "dist/serve-dashboard.js",
+  "scripts": {
+    "demo": "tsx src/run-demo.ts",
+    "dashboard": "tsx src/serve-dashboard.ts",
+    "start": "tsx src/serve-dashboard.ts",
+    "test": "tsx tests/sentinel.test.ts",
+    "build": "tsc",
+    "compile": "npx hardhat compile",
+    "deploy": "tsx scripts/deploy-sentinel.ts"
+  },
+  "keywords": [
+    "keeperhub",
+    "defi",
+    "agent",
+    "sentinel",
+    "aave",
+    "ethereum",
+    "hackathon"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@types/node": "^26.4.1",
+    "dotenv": "^17.4.2",
+    "typescript": "^7.0.2",
+    "viem": "^2.56.3"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "ethers": "^6.15.1",
+    "hardhat": "^3.0.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.13"
+  }
+}
