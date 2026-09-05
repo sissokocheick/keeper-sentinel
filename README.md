@@ -1,7 +1,8 @@
 # KeeperSentinel 🛡️
 
 > **Autonomous DeFi Risk Monitor + Deterministic Execution Engine**  
-> Submission for the [KeeperHub — Agent Economy Hackathon](https://dorahacks.io/hackathon/agent-economy/detail) · Base Sepolia · Sep 2026
+> Submission for the [KeeperHub — Agent Economy Hackathon](https://dorahacks.io/hackathon/agent-economy/detail) · Base Sepolia · Sep 2026  
+> 🌐 **Live Web3 Dashboard:** [https://sentinel-keeperhub-nu.vercel.app/](https://sentinel-keeperhub-nu.vercel.app/)
 
 ---
 

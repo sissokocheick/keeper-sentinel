@@ -10,6 +10,8 @@ Ce document contient toutes les réponses et éléments prêts à être copiés/
 * **Tagline** : *Eliminating probabilistic execution risks for AI DeFi agents via KeeperHub deterministic MCP preflight & Turnkey secure execution.*
 * **Track Principal** : `Main Track: Best Integration into a Live Project`
 * **Bounty Soumise** : `Bounty: Best KeeperHub Feature` (via PR sur `github.com/KeeperHub/keeperhub`)
+* **Live Web3 Dashboard** : `https://sentinel-keeperhub-nu.vercel.app/`
+* **GitHub Repository** : `https://github.com/sissokocheick/keeper-sentinel`
 * **Contact** : 
   * Email : `sissokocheickahmed14@gmail.com`
   * Discord / X : `@malpiedi` / Cheick Sissoko
