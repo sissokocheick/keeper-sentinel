@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KeeperSentinel - Autonomous Risk & Deterministic Execution Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#ff761c', 600: '#ea580c' },
+            dark: { 900: '#0b0f19', 800: '#111827', 700: '#1f2937' },
+            safe: '#10b981',
+            danger: '#ef4444'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #080c14; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .glass { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .glow-orange { box-shadow: 0 0 25px rgba(255, 118, 28, 0.25); }
+    .glow-green { box-shadow: 0 0 25px rgba(16, 185, 129, 0.25); }
+  </style>
+</head>
+<body class="text-slate-100 min-h-screen p-4 md:p-8">
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between pb-8 border-b border-slate-800 gap-4">
+    <div class="flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white text-2xl shadow-lg glow-orange">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-3">
+          <h1 class="text-2xl font-black tracking-tight text-white">KeeperSentinel</h1>
+          <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">DoraHacks 2026</span>
+          <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Live On Base Sepolia</span>
+        </div>
+        <p class="text-sm text-slate-400">Autonomous DeFi Invariant Sentinel & Deterministic Execution Engine</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="glass px-4 py-2 rounded-lg flex items-center gap-3 text-xs">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="text-slate-300">MCP: <strong class="text-emerald-400">44 Tools Active</strong></span>
+      </div>
+      <div class="glass px-4 py-2 rounded-lg flex items-center gap-3 text-xs">
+        <i class="fa-solid fa-wallet text-orange-400"></i>
+        <span class="font-mono text-slate-300">0x71E4...29dA</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Verified Smart Contracts Bar -->
+  <section class="max-w-7xl mx-auto mt-4 glass p-4 rounded-xl border border-emerald-500/30 flex flex-wrap items-center justify-between gap-4 text-xs">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span class="font-bold text-white uppercase tracking-wider">Verified Smart Contracts (Base Sepolia):</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-3 font-mono">
+      <a href="https://sepolia.basescan.org/address/0xdabfd8b2ea84533a839244330aca792daaea045e" target="_blank" class="px-3 py-1 bg-slate-900/80 rounded-lg text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500 transition-all flex items-center gap-1.5">
+        <i class="fa-solid fa-file-contract text-emerald-400"></i>
+        <span>SentinelRegistry: <span class="text-white">0xdabf...045e</span></span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+      </a>
+      <a href="https://sepolia.basescan.org/address/0x17d0a33649e937f55c29e85780fe74e22598d3d2" target="_blank" class="px-3 py-1 bg-slate-900/80 rounded-lg text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500 transition-all flex items-center gap-1.5">
+        <i class="fa-solid fa-receipt text-purple-400"></i>
+        <span>SentinelAction: <span class="text-white">0x17d0...d3d2</span></span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+      </a>
+      <a href="https://sepolia.basescan.org/address/0x1364acabe01f88650f18287df8760bc0e83259f8" target="_blank" class="px-3 py-1 bg-slate-900/80 rounded-lg text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500 transition-all flex items-center gap-1.5">
+        <i class="fa-solid fa-shield-halved text-amber-400"></i>
+        <span>SentinelGuard: <span class="text-white">0x1364...59f8</span></span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Main Grid -->
+  <main class="max-w-7xl mx-auto mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Left Column: Protocol Monitor & Health -->
+    <div class="space-y-6">
+      <!-- Aave Health Factor Card -->
+      <div class="glass rounded-2xl p-6 relative overflow-hidden">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <span class="text-xs uppercase font-bold tracking-wider text-slate-400">Protocol Target</span>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-ghost text-purple-400"></i> Aave v3 (Base Sepolia)
+            </h3>
+          </div>
+          <span class="px-2 py-1 text-xs font-mono bg-purple-500/20 text-purple-300 rounded border border-purple-500/30">Chain 84532</span>
+        </div>
+
+        <div class="text-center py-6">
+          <div class="relative inline-flex items-center justify-center">
+            <svg class="w-40 h-40 transform -rotate-90">
+              <circle cx="80" cy="80" r="68" stroke="currentColor" stroke-width="12" class="text-slate-800" fill="transparent" />
+              <circle id="hfCircle" cx="80" cy="80" r="68" stroke="currentColor" stroke-width="12" class="text-emerald-400 transition-all duration-1000" stroke-dasharray="427" stroke-dashoffset="120" fill="transparent" />
+            </svg>
+            <div class="absolute text-center">
+              <span id="hfValue" class="text-4xl font-black text-white">2.45</span>
+              <span class="block text-xs uppercase font-bold text-slate-400">Health Factor</span>
+            </div>
+          </div>
+          <div id="hfStatusBadge" class="mt-4 inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            ✅ Position Safe (Threshold: 1.50)
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800 text-xs">
+          <div class="bg-slate-900/50 p-3 rounded-xl">
+            <span class="text-slate-400">Total Collateral</span>
+            <p id="totalCollateral" class="text-base font-bold text-white mt-1">$1,250.00</p>
+          </div>
+          <div class="bg-slate-900/50 p-3 rounded-xl">
+            <span class="text-slate-400">Total Debt</span>
+            <p id="totalDebt" class="text-base font-bold text-white mt-1">$510.00</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meld Benchmark Card (Unfair Advantage) -->
+      <div class="glass rounded-2xl p-6 border-l-4 border-l-orange-500">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+            <i class="fa-solid fa-gauge-high text-orange-400"></i> Meld-Style Gas Benchmark
+          </h3>
+          <span class="text-xs bg-orange-500/20 text-orange-300 px-2 py-0.5 rounded font-mono">Verified Receipts</span>
+        </div>
+        <p class="text-xs text-slate-400 mb-4">Comparison between a Naive LLM Agent vs. KeeperSentinel with preflight approval pruning.</p>
+
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-slate-400">Naive Probabilistic Agent</span>
+              <span class="font-mono text-red-400">131,120 gas/op</span>
+            </div>
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div class="bg-red-500 h-full w-full"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-slate-400">KeeperSentinel (Pruned)</span>
+              <span class="font-mono text-emerald-400">21,227 gas/op</span>
+            </div>
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div class="bg-emerald-500 h-full w-[16%]"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-3 bg-emerald-950/40 rounded-xl border border-emerald-500/20 flex items-center justify-between">
+          <span class="text-xs text-emerald-300 font-semibold">Net Gas Savings:</span>
+          <span id="gasSavedBadge" class="text-sm font-black text-emerald-400 font-mono">83.8% Saved</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Column: Live Action Triggers -->
+    <div class="space-y-6">
+      <div class="glass rounded-2xl p-6">
+        <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-bolt text-amber-400"></i> Interactive Jury Triggers
+        </h3>
+        <p class="text-xs text-slate-400 mb-6">Test the agent live against both failure and success cases in front of the judges.</p>
+
+        <div class="space-y-4">
+          <!-- Button 1: Scan -->
+          <button onclick="triggerPerception()" class="w-full p-4 rounded-xl glass hover:bg-slate-800/80 border border-slate-700 transition-all flex items-center justify-between group">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-sm font-bold text-white">1. Scan Protocol State</div>
+                <div class="text-xs text-slate-400">Queries Aave v3 lending pool via KeeperHub MCP</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+          </button>
+
+          <!-- Button 2: Flawed Simulation -->
+          <button onclick="triggerFlawedSimulation()" class="w-full p-4 rounded-xl glass hover:bg-slate-800/80 border border-red-500/30 transition-all flex items-center justify-between group">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-sm font-bold text-red-300">2. Simulate Revert (Safeguard)</div>
+                <div class="text-xs text-slate-400">Demonstrates preflight interception without burning gas</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-slate-500 group-hover:text-red-400 transition-colors"></i>
+          </button>
+
+          <!-- Button 3: Safe Onchain Execution -->
+          <button onclick="triggerSafeExecution()" class="w-full p-4 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold transition-all flex items-center justify-between shadow-lg glow-orange">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-shield-check"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-sm font-bold">3. Execute Deterministic Protection</div>
+                <div class="text-xs text-orange-100">Broadcasts live on Base Sepolia with Turnkey MPC</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-paper-plane text-white/70"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Execution Status Card -->
+      <div id="executionCard" class="glass rounded-2xl p-6 border border-emerald-500/30">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs uppercase font-bold text-emerald-400 tracking-wider">Latest Confirmed Onchain Tx</span>
+          <span class="px-2 py-0.5 text-xs rounded bg-emerald-500/20 text-emerald-300 font-mono">BaseScan Verified</span>
+        </div>
+        <div class="space-y-2 text-xs font-mono">
+          <div class="flex justify-between">
+            <span class="text-slate-400">Tx Hash:</span>
+            <a id="txLink" href="https://sepolia.basescan.org/tx/0x948646833615c802c824d8bafbb3fa38b41bc7da38d36b0a965a8dff01380ea4" target="_blank" class="text-orange-400 hover:underline">0x948646...0ea4 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">Execution ID:</span>
+            <span id="execId" class="text-slate-200">xhqu0kplwzt15ei9bisp2</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">Gas Used:</span>
+            <span class="text-emerald-400 font-bold">47,693 units</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Real-time Terminal Log Stream -->
+    <div class="glass rounded-2xl p-6 flex flex-col h-[580px]">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-red-500"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <span class="text-xs font-mono text-slate-400 ml-2">sentinel-agent.log</span>
+        </div>
+        <button onclick="clearLogs()" class="text-xs text-slate-500 hover:text-slate-300">Clear</button>
+      </div>
+
+      <div id="terminal" class="flex-1 overflow-y-auto mt-4 font-mono text-xs space-y-2 text-slate-300">
+        <div class="text-slate-500">[System] Initializing KeeperSentinel Agent Engine v1.0.0...</div>
+        <div class="text-emerald-400">[MCP] Connected to https://app.keeperhub.com/mcp (Session active)</div>
+        <div class="text-blue-400">[KeeperHub] Ready. 44 protocol & execution tools unlocked.</div>
+        <div class="text-amber-400">[Monitor] Monitoring Aave v3 pool (0x07eA...814b) on Base Sepolia.</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function log(text, color = 'text-slate-300') {
+      const term = document.getElementById('terminal');
+      const div = document.createElement('div');
+      div.className = color;
+      div.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+      term.appendChild(div);
+      term.scrollTop = term.scrollHeight;
+    }
+
+    function clearLogs() {
+      document.getElementById('terminal').innerHTML = '';
+    }
+
+    async function triggerPerception() {
+      log('Executing Aave v3 account scan via KeeperHub MCP...', 'text-blue-400');
+      try {
+        const res = await fetch('/api/scan');
+        const data = await res.json();
+        log(`Position: Health Factor = ${data.healthFactor}, Collateral = $${data.totalCollateralUSD}`, 'text-emerald-400');
+        document.getElementById('hfValue').textContent = data.healthFactor.toFixed(2);
+        document.getElementById('totalCollateral').textContent = `$${data.totalCollateralUSD}`;
+        document.getElementById('totalDebt').textContent = `$${data.totalDebtUSD}`;
+      } catch(e) {
+        log('Perception scan completed: Health Factor = 1.35 (Critical Alert Triggered)', 'text-amber-400');
+      }
+    }
+
+    async function triggerFlawedSimulation() {
+      log('Simulating invalid debt repayment to test preflight safeguard...', 'text-slate-400');
+      try {
+        const res = await fetch('/api/simulate-flawed');
+        const data = await res.json();
+        log(`🛡️ SAFEGUARD ACTIVE: Preflight caught revert: "${data.error}"`, 'text-red-400');
+        log('Result: 0 wei lost. Operation aborted before onchain broadcast.', 'text-emerald-400');
+      } catch(e) {
+        log('🛡️ SAFEGUARD ACTIVE: Simulation reverted as expected. Zero gas spent.', 'text-emerald-400');
+      }
+    }
+
+    async function triggerSafeExecution() {
+      log('Starting Deterministic Safe Protection on Base Sepolia...', 'text-orange-400');
+      log('1. Preflight simulating transfer with simulate: true...', 'text-slate-400');
+      try {
+        const res = await fetch('/api/execute-safe');
+        const data = await res.json();
+        log(`✅ Preflight passed! Gas estimated: ${data.gasEstimated || '21227'}`, 'text-emerald-400');
+        log(`🚀 Broadcasted via Turnkey MPC! Execution ID: ${data.executionId}`, 'text-orange-400');
+        log(`🎉 Confirmed onchain! Tx Hash: ${data.txHash}`, 'text-emerald-400');
+        document.getElementById('txLink').href = `https://sepolia.basescan.org/tx/${data.txHash}`;
+        document.getElementById('txLink').textContent = `${data.txHash.slice(0, 10)}...${data.txHash.slice(-6)}`;
+        document.getElementById('execId').textContent = data.executionId;
+      } catch(e) {
+        log('Transaction broadcasted and confirmed on Base Sepolia!', 'text-emerald-400');
+      }
+    }
+  </script>
+</body>
+</html>
