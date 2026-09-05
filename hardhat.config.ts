@@ -1,5 +1,4 @@
 import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-ethers";
 import * as dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";

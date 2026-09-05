@@ -8,6 +8,7 @@
     "dashboard": "tsx src/serve-dashboard.ts",
     "start": "tsx src/serve-dashboard.ts",
     "test": "tsx tests/sentinel.test.ts",
+    "test:unit": "tsx tests/unit.test.ts",
     "build": "tsc",
     "compile": "npx hardhat compile",
     "deploy": "tsx scripts/deploy-sentinel.ts"
