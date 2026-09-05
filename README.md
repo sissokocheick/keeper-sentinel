@@ -1,8 +1,20 @@
+<p align="center">
+  <img src="./logo-banner.svg" alt="KeeperSentinel Banner" width="100%"/>
+</p>
+
+<p align="center">
+  <a href="https://sentinel-keeperhub-nu.vercel.app/"><img src="https://img.shields.io/badge/Live%20Dashboard-Vercel%20Production-10b981?style=for-the-badge&logo=vercel" alt="Live App"/></a>
+  <a href="https://sepolia.basescan.org/address/0xdabfd8b2ea84533a839244330aca792daaea045e"><img src="https://img.shields.io/badge/Base%20Sepolia-84532-0052FF?style=for-the-badge&logo=coinbase" alt="Base Sepolia"/></a>
+  <a href="https://dorahacks.io/hackathon/agent-economy/detail"><img src="https://img.shields.io/badge/DoraHacks-Agent%20Economy%202026-ff761c?style=for-the-badge" alt="DoraHacks"/></a>
+  <a href="https://github.com/sissokocheick/keeper-sentinel"><img src="https://img.shields.io/badge/Foundry%20%2B%20TS%20Tests-68%2F68%20Passing-success?style=for-the-badge&logo=githubactions" alt="Tests"/></a>
+</p>
+
 # KeeperSentinel 🛡️
 
 > **Autonomous DeFi Risk Monitor + Deterministic Execution Engine**  
-> Submission for the [KeeperHub — Agent Economy Hackathon](https://dorahacks.io/hackathon/agent-economy/detail) · Base Sepolia · Sep 2026  
-> 🌐 **Live Web3 Dashboard:** [https://sentinel-keeperhub-nu.vercel.app/](https://sentinel-keeperhub-nu.vercel.app/)
+> Official DoraHacks Submission for the [KeeperHub — Agent Economy Hackathon](https://dorahacks.io/hackathon/agent-economy/detail) · Base Sepolia · Sep 2026  
+> 🌐 **Live Web3 Dashboard:** [https://sentinel-keeperhub-nu.vercel.app/](https://sentinel-keeperhub-nu.vercel.app/)  
+> 📂 **GitHub Repository:** [https://github.com/sissokocheick/keeper-sentinel](https://github.com/sissokocheick/keeper-sentinel)
 
 ---
 

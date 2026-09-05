@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff761c"/>
+      <stop offset="50%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Cyber Shield -->
+  <path d="M32 4 L54 14 V32 C54 46 44 56 32 60 C20 56 10 46 10 32 V14 Z" 
+        fill="#0b0f19" stroke="url(#shieldGrad)" stroke-width="2.5" filter="url(#glow)"/>
+
+  <!-- Inner Cyber Grid Lines -->
+  <path d="M32 12 L46 19 V32 C46 41 39 49 32 52 C25 49 18 41 18 32 V19 Z" 
+        fill="#111827" stroke="#ff761c" stroke-width="1.2" stroke-opacity="0.6"/>
+
+  <!-- Stylized Central K + Keyhole Sentinel Eye -->
+  <polygon points="32,20 40,25 40,35 32,40 24,35 24,25" fill="url(#coreGrad)" stroke="#10b981" stroke-width="1.5"/>
+  <circle cx="32" cy="30" r="3" fill="#ffffff"/>
+  <path d="M32 30 L32 36" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Corner Tech Accents -->
+  <circle cx="32" cy="14" r="1.5" fill="#ff761c"/>
+  <circle cx="48" cy="20" r="1.2" fill="#10b981"/>
+  <circle cx="16" cy="20" r="1.2" fill="#10b981"/>
+</svg>
